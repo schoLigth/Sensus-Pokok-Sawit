@@ -1,0 +1,89 @@
+/* =========================================================
+   BASE STYLE
+   ========================================================= */
+   body {
+    background-color: #ffffff;
+    color: #000000;
+    font-family: system-ui, sans-serif;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #111111;
+        color: #ffffff;
+    }
+    .card {
+        background-color: #ffffff !important;
+        color: #000000 !important;
+    }
+}
+
+/* =========================================================
+   LOGIN CARD WRAPPER
+   ========================================================= */
+.login-box {
+    max-width: 900px;
+    margin: auto;
+    border-radius: 12px;
+}
+
+/* =========================================================
+   RIGHT SIDE (GREEN GRADIENT)
+   ========================================================= */
+.info-box {
+    background: linear-gradient(135deg, #66BB6A, #43A047);
+    border-radius: 12px;
+}
+
+/* Dark mode adjust for info box */
+@media (prefers-color-scheme: dark) {
+    .info-box {
+        background: linear-gradient(135deg, #4f8a4f, #356e35);
+    }
+}
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+.logo {
+    width: 150px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+@media (max-width: 576px) {
+    .logo {
+        width: 120px;
+    }
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+h1, h2, h3, h4 {
+    font-weight: 600;
+}
+
+label, input, button {
+    font-size: clamp(14px, 2vw, 18px);
+}
+
+p {
+    font-size: clamp(14px, 2vw, 18px);
+    text-align: justify;
+}
+
+/* =========================================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================================= */
+@media (max-width: 576px) {
+    .login-box {
+        margin: 10px;
+    }
+    .info-box {
+        padding: 25px !important;
+        text-align: center;
+        border-radius: 0 0 12px 12px;
+    }
+}

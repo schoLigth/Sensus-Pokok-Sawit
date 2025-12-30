@@ -1,0 +1,150 @@
+/* ============================================
+   GLOBAL STYLING
+============================================ */
+body {
+    background-color: #f5f7fa;
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+/* Title */
+h3, h4 {
+    color: #2b3a55;
+    text-align: center;
+}
+
+/* Label Form */
+.form-label {
+    color: #2b3a55;
+    font-weight: 600;
+}
+
+/* Inputs */
+.form-control, .form-select {
+    border-radius: 10px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 3px rgba(25, 135, 84, 0.25);
+    border-color: #198754;
+}
+
+/* ============================================
+   CARD STYLE
+============================================ */
+.card {
+    border-radius: 14px;
+    border: none;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.shadow-sm {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08) !important;
+}
+
+/* ============================================
+   BUTTONS
+============================================ */
+.btn {
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-size: 15px;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border: none;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-success {
+    background-color: #198754;
+    border: none;
+}
+.btn-success:hover {
+    background-color: #157347;
+}
+
+.btn-primary {
+    background-color: #0d6efd;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #0b5ed7;
+}
+
+/* ============================================
+   TABLE STYLE
+============================================ */
+table thead {
+    background-color: #e9eef5;
+    color: #2b3a55;
+    font-weight: 700;
+}
+
+table td, table th {
+    vertical-align: middle;
+}
+
+table tbody tr {
+    transition: background-color 0.2s ease;
+}
+table tbody tr:hover {
+    background-color: #f1f5fb;
+    cursor: pointer;
+}
+
+/* ============================================
+   FOOTER BUTTONS ALIGNMENT
+============================================ */
+#btnNextWrapper {
+    transition: opacity 0.3s ease;
+}
+
+#btnNextWrapper.show {
+    display: block !important;
+    opacity: 1;
+}
+
+#btnNextWrapper.hide {
+    opacity: 0;
+    display: none; /* tambahan agar benar-benar hilang */
+}
+
+/* ============================================
+   MOBILE RESPONSIVE
+============================================ */
+@media (max-width: 576px) {
+    .responsive-flex {   /* gunakan class khusus, bukan override .d-flex */
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    #btnNextWrapper {
+        width: 100%;
+        text-align: right;
+    }
+}
+
+/* Membatasi tinggi tabel agar hanya tampil 3 baris */
+#dataTableWrapper {
+    max-height: 180px;      /* kira-kira 3 baris tabel */
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    background: white;
+}
+
+/* Sticky header agar tidak ikut scroll */
+#dataTable thead th {
+    position: sticky;
+    top: 0;
+    background: #f8f9fa !important; /* Bootstrap table-light */
+    z-index: 5;
+}

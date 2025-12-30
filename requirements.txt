@@ -1,0 +1,10 @@
+run : python app.python
+
+🔹 Backend: Flask (Python)
+🔹 Database: PostgreSQL (Supabase)
+🔹 Storage Foto: Cloudinary
+🔹 Maps: Leaflet.js + GeoJSON
+🔹 Hosting development: Render.com (gratis)
+
+DB_URL=postgresql://postgres:palmoil13%21%40@db.inhzcwsvrdatsecvmwkw.supabase.co:5432/postgres
+SECRET_KEY=palmoil13

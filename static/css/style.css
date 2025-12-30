@@ -1,0 +1,32 @@
+.stat-box {
+    padding: 20px;
+    color: white;
+    border-radius: 12px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+}
+
+.stat-box p {
+    font-size: 28px;
+    margin: 0;
+    padding: 0;
+}
+
+.green { background: #4CAF50; }
+.orange { background: #FF9800; }
+.yellow { background: #FFC107; }
+.red { background: #F44336; }
+.dark { background: #3E3E3E; }
+.blue { background: #2196F3; }
+
+
+#rekapChart {
+    text-align: right;
+    max-width: 400px;
+    max-height: 400px;
+    float:right;
+  }
+
+  

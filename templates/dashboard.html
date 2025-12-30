@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container py-4">
+
+    <h2 class="mb-4 fw-bold">Dashboard Kunjungan Sawit</h2>
+
+    <!-- Row 1 -->
+    <div class="row mb-3">
+        <div class="col-md-4">
+            <div class="stat-box green">
+                <h4>Pokok Sehat</h4>
+                <p>{{ data.sehat }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="stat-box orange">
+                <h4>Pokok Terserang Penyakit</h4>
+                <p>{{ data.penyakit }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="stat-box yellow">
+                <h4>Pokok Terserang Hama</h4>
+                <p>{{ data.hama }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="stat-box red">
+                <h4>Pokok Tercekik</h4>
+                <p>{{ data.tercekik }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="stat-box dark">
+                <h4>Pokok Mati/Kosong</h4>
+                <p>{{ data.mati }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="stat-box blue">
+                <h4>Total Pokok Sawit</h4>
+                <p>{{ data.total }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Button + Chart -->
+    <div class="row align-items-center">
+        <div class="col-md-4 mb-4 text-center text-md-start">
+            <a href="/kunjungan-baru" class="btn btn-primary btn-lg">
+                + Kunjungan Baru
+            </a>
+        </div>
+
+        <div class="col-md-8">
+            <canvas id="rekapChart"></canvas>
+        </div>
+    </div>
+
+      <!-- TABEL -->
+  <h4 class="mb-3">Data Tersimpan (sementara)</h4>
+
+  <div class="card shadow-sm mb-5">
+    <div class="card-body">
+      <div id="dataTableWrapper">
+        <table class="table table-bordered mb-0" id="dataTable">
+          <thead class="table-light">
+            <tr>
+              <th>Nama</th>
+              <th>Status</th>
+              <th>Tanggal</th>
+              <th>Waktu</th>
+              <th>Lokasi</th>
+              <th>Blok</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+<!-- Sawit data dikonversi jadi variabel JS -->
+<script id="sawit-data" type="application/json">
+    {{ [
+        data.sehat,
+        data.penyakit,
+        data.hama,
+        data.tercekik,
+        data.mati
+    ] | tojson | safe }}
+    </script>
+    
+    <!-- Setting posisi pie chart dan legend -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<div style="width:250px; height:250px; margin:right;">
+    <canvas id="rekapChart"></canvas>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const canvas = document.getElementById('rekapChart');
+    if (!canvas) return;
+
+    // Ambil data dari Flask (Jinja akan render angka ke dalam array JS)
+    // Abaikan error karena ini file Jinja buka JavaScript
+    const sawitData = [
+      {{ data.sehat }},
+      {{ data.penyakit }},
+      {{ data.hama }},
+      {{ data.tercekik }},
+      {{ data.mati }},
+    ];
+
+    // Chart pie untuk menampilkan persentase masing-masing laporan pokok
+    new Chart(canvas, {
+        type: 'pie',
+        data: {
+          labels: [
+            'Pokok Sehat',
+            'Pokok Terserang Penyakit',
+            'Pokok Terserang Hama',
+            'Pokok Tercekik',
+            'Pokok Mati/Kosong',
+          ],
+          datasets: [{
+            data: sawitData,
+            backgroundColor: [
+              '#4CAF50', '#FF9800', '#FFC107',
+              '#F44336', '#3E3E3E'
+            ]
+          }]
+        },
+        options: {
+            plugins: {
+              legend: {
+                position: 'right',   // legend di kanan chart
+                align: 'start',      // mulai dari atas (top-aligned)
+                labels: {
+                  boxWidth: 20,
+                  padding: 10
+                }
+              }
+            }
+          }
+      });
+      
+  });
+
+</script>
+
+
+{% endblock %}

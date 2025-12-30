@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login</title>
+
+  <!-- Bootstrap CSS -->
+  <link 
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" 
+  href="{{ url_for('static', filename='css/login.css') }}">
+
+</head>
+
+<body class="bg-light">
+
+  <div class="container d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow login-box">
+      <div class="row g-0">
+
+        <!-- Left side -->
+        <div class="col-lg-6 p-5">
+          <div class="text-center mb-4">
+            <img 
+              src="https://www.shutterstock.com/image-photo/palm-oil-nuts-cut-half-600nw-2436986549.jpg" 
+              class="logo mb-3" 
+              alt="logo"
+            >
+            <h4 class="fw-bold">Sensus Pokok Sawit</h4>
+          </div>
+
+          <!-- TAMPILKAN ERROR LOGIN JIKA ADA -->
+          {% if error %}
+          <div class="alert alert-danger text-center py-2">
+            {{ error }}
+          </div>
+          {% endif %}
+
+          <form method="POST" action="{{ url_for('login_process') }}">
+            <p class="text-muted">Please login to your account</p>
+
+            <div class="mb-3">
+              <label class="form-label">Username</label>
+              <input 
+                type="text" 
+                name="username"
+                placeholder="Enter your username" 
+                class="form-control"
+                required
+              >
+            </div>
+            
+            <div class="mb-4">
+              <label class="form-label">Password</label>
+              <input 
+                type="password" 
+                name="password"
+                placeholder="Enter your password" 
+                class="form-control"
+                required
+              >
+            </div>
+
+            <div class="d-grid mb-3">
+              <button class="btn btn-success">Log in</button>
+            </div>
+
+            <div class="text-center">
+              <a href="#" class="text-muted small">Forgot password?</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right side -->
+        <div class="col-lg-6 text-white d-flex align-items-center info-box p-4 p-md-5">
+          <div>
+            <h4 class="fw-bold mb-3">What website is this?</h4>
+            <p class="small">
+              Website ini digunakan oleh Mandor untuk mencatat kunjungan ke pokok sawit,
+              menambahkan titik koordinat, mengunggah foto, dan mencatat kondisi pohon.
+              Alur pengguna mencakup login, membuat kunjungan baru, menambahkan catatan & foto,
+              serta melihat riwayat kunjungan secara lengkap.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script 
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+  </script>
+
+</body>
+</html>
